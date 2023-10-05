@@ -1,7 +1,7 @@
 
 import styles from "../styles/buttonsOperators.module.css"
 import { btnProps } from "../types/inputs";
-const btns = ["/", "x", "-"];
+const btns = ["÷", "x", "-"];
 
 export function Operators({addNumber}: btnProps) {
     const handleClick = (event: string) => {
