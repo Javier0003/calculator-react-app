@@ -3,7 +3,7 @@ import { Screen } from './components/screen'
 import { Keyboard } from './components/keyboard'
 import { Operators } from "./components/operators"
 
-const cantStart = [",", "0", "+", "x", "/"]
+const cantStart = [",", "0", "+", "x", "/", "÷"]
 const cantRepeat = ["÷", "x", "-", "+"]
 
 function App() {
@@ -20,6 +20,12 @@ function App() {
       return
     }
     setState(state + e)
+  }
+  const removeNumber = () => {
+    setState(state.slice(0, -1))
+  }
+  const solve = () => {
+    setState(eval(state))
   }
   //last thing we are on is trying not to be able to repeat the operators
   return (
@@ -41,6 +47,8 @@ function App() {
       addNumber={addNumber} 
       />
       <Operators
+      solve={solve}
+      removeNumber={removeNumber}
       addNumber={addNumber} 
       /> 
     </div>
