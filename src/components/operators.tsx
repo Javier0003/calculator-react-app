@@ -1,12 +1,18 @@
 
 import styles from "../styles/buttonsOperators.module.css"
-import { btnProps } from "../types/inputs";
-const btns = ["÷", "x", "-"];
+import { operatorProps } from "../types/inputs";
+const btns = ["÷", "x", "-", "+"];
 
-export function Operators({addNumber}: btnProps) {
+export function Operators({addNumber, removeNumber, solve}: operatorProps) {
     const handleClick = (event: string) => {
         const value = event
         addNumber(value)
+    }
+    const handleRemove = () => {
+        removeNumber()
+    }
+    const handleEqual = () => {
+        solve()
     }
     return(
         <div style={{
@@ -18,7 +24,10 @@ export function Operators({addNumber}: btnProps) {
             <div style={{
                 flexWrap: "wrap"
             }}>
-                <button className={styles.button} >
+                <button
+                className={styles.button}
+                onClick={handleRemove}
+                >
                     <img src="../imgs\keyboard_backspace_FILL0_wght400_GRAD0_opsz24.svg" alt="" />
                 </button>
                 {btns.map(btns =>{
@@ -36,8 +45,8 @@ export function Operators({addNumber}: btnProps) {
                     height: '58px',
                     borderRadius: "0px 0px 20px 0px"
                 }}
-                onClick={() => {handleClick("+")}}
-                >+</button>
+                onClick={() => {handleEqual()}}
+                >=</button>
             </div>
             
         </div>
