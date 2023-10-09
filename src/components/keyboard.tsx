@@ -1,10 +1,10 @@
 import styles from "../styles/buttonsNumbers.module.css"
-import { btnProps } from "../types/inputs";
+import { btnPropsKeyboard } from "../types/inputs";
 
 const btns = ['1','2','3','4','5','6','7','8','9'];
 
 
-export function Keyboard({addNumber}: btnProps) {
+export function Keyboard({addNumber}: btnPropsKeyboard) {
     const handleClick = (event: string) => {
         const value = event
         addNumber(value)
