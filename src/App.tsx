@@ -19,33 +19,36 @@ function App() {
     }
 
     if (state === "" && cantStart.includes(e)) return;
-    setHiddenState(hiddenState + e);
-    setState(state + e);
+    setHiddenState(prevState => prevState + e);
+    setState(prevState => prevState + e);
   };
 
   const addOperator = (e: string) => {
+    if (justCalculated === true) {
+      setJustCalculated(false);
+    }
     if (state === "" && cantStart.includes(e)) return;
     if (cantRepeat.includes(e) && state.slice(-1) === e) return;
     if (state.slice(-1) === "x" && state.slice(-2) === "x") return;
 
     if (e === "x") {
-      setHiddenState(state + "*");
+      setHiddenState(prevState => prevState + "*");
     }
 
     if (e === "÷") {
-      setHiddenState(state + "/");
+      setHiddenState(prevState => prevState + "/");
     }
 
     if (e !== "÷" && e !== "x") {
-      setHiddenState(hiddenState + e);
+      setHiddenState(prevState => prevState + e);
     }
 
-    setState(state + e);
+    setState(prevState => prevState + e);
   };
 
   const removeNumber = () => {
-    setState(state.slice(0, -1));
-    setHiddenState(hiddenState.slice(0, -1));
+    setState(prevState => prevState.slice(0, -1));
+    setHiddenState(prevState => prevState.slice(0, -1));
   };
 
   const solve = () => {
