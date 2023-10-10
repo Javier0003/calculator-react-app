@@ -1,0 +1,11 @@
+.container{
+    margin-Left: 40%;
+    margin-Top: 10%;
+    border: 5px solid black;
+    display: flex;
+    min-Width: 300px;
+    width: 15%;
+    flex-Wrap: wrap;
+    height: 400px;
+    border-Radius: 27px;
+}
