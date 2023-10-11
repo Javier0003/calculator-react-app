@@ -5,44 +5,35 @@ import { Operators } from "./components/operators";
 import styles from "./styles/main.module.css";
 
 const cantStart = [",", "0", "+", "x", "/", "÷"];
-const cantRepeat = ["÷", "+"];
+const cantRepeat = ["÷", "+", "-"];
 
 function App() {
   const [state, setState] = useState<string>("");
   const [hiddenState, setHiddenState] = useState<string>("");
   const [justCalculated, setJustCalculated] = useState<boolean>(false);
+
   const addNumber = (e: string) => {
     if (justCalculated === true) {
       setHiddenState("");
       setState("");
       setJustCalculated(false);
     }
-
     if (state === "" && cantStart.includes(e)) return;
     setHiddenState(prevState => prevState + e);
     setState(prevState => prevState + e);
   };
 
   const addOperator = (e: string) => {
-    if (justCalculated === true) {
-      setJustCalculated(false);
-    }
+    if (justCalculated === true) setJustCalculated(false);
     if (state === "" && cantStart.includes(e)) return;
-    if (cantRepeat.includes(e) && state.slice(-1) === e) return;
-    if (state.slice(-1) === "x" && state.slice(-2) === "x") return;
+    if (cantRepeat.includes(e) && state.charAt(state.length - 1) === e) return;
 
-    if (e === "x") {
-      setHiddenState(prevState => prevState + "*");
-    }
+    // if (cantRepeat.includes(e) && cantRepeat.includes(state.charAt(state.length - 1)) && state.includes("x")) return;
 
-    if (e === "÷") {
-      setHiddenState(prevState => prevState + "/");
-    }
-
-    if (e !== "÷" && e !== "x") {
-      setHiddenState(prevState => prevState + e);
-    }
-
+    if (state.charAt(state.length - 1) === "x" && state.charAt(state.length - 2) === "x") return;
+    if (e === "x") setHiddenState(prevState => prevState + "*");
+    if (e === "÷") setHiddenState(prevState => prevState + "/");
+    if (e !== "÷" && e !== "x") setHiddenState(prevState => prevState + e);
     setState(prevState => prevState + e);
   };
 
@@ -57,7 +48,6 @@ function App() {
     setHiddenState(eval(hiddenState).toString());
   };
 
-  //last thing we are on is trying not to be able to repeat the operators
   return (
     <div className={styles.container}>
       <Screen values={state} />
