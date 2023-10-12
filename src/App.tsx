@@ -22,14 +22,11 @@ function App() {
     setHiddenState(prevState => prevState + e);
     setState(prevState => prevState + e);
   };
-
+  
   const addOperator = (e: string) => {
     if (justCalculated === true) setJustCalculated(false);
     if (state === "" && cantStart.includes(e)) return;
-    if (cantRepeat.includes(e) && state.charAt(state.length - 1) === e) return;
-
-    // if (cantRepeat.includes(e) && cantRepeat.includes(state.charAt(state.length - 1)) && state.includes("x")) return;
-
+    if (cantRepeat.includes(e) && cantRepeat.includes(state.charAt(state.length - 1))) return;
     if (state.charAt(state.length - 1) === "x" && state.charAt(state.length - 2) === "x") return;
     if (e === "x") setHiddenState(prevState => prevState + "*");
     if (e === "÷") setHiddenState(prevState => prevState + "/");
