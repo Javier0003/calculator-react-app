@@ -1,6 +1,6 @@
 # calculator-react-app
  
-kinda done
+kinda done 🥵🥵🥵🥵🥵🥵
 
 
 todo:
