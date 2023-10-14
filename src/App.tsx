@@ -28,6 +28,7 @@ function App() {
     if (state === "" && cantStart.includes(e)) return;
     if (cantRepeat.includes(e) && cantRepeat.includes(state.charAt(state.length - 1))) return;
     if (state.charAt(state.length - 1) === "x" && state.charAt(state.length - 2) === "x") return;
+    if (state.charAt(state.length - 1) === "x" && cantRepeat.includes(e)) return;
     if (e === "x") setHiddenState(prevState => prevState + "*");
     if (e === "÷") setHiddenState(prevState => prevState + "/");
     if (e !== "÷" && e !== "x") setHiddenState(prevState => prevState + e);
