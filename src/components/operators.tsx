@@ -21,19 +21,16 @@ export function Operators({ addOperator, removeNumber, solve }: operatorProps) {
             src="../imgs\keyboard_backspace_FILL0_wght400_GRAD0_opsz24.svg"
           />
         </button>
-        {btns.map((btns) => {
-          return (
-            <button
+        {btns.map(btn=><button
               className={styles.button}
-              key={btns}
+              key={btn}
               onClick={() => {
-                handleClick(btns);
+                handleClick(btn);
               }}
             >
-              {btns}
+              {btn}
             </button>
-          );
-        })}
+            )}
         <button
           className={styles.borderBtn}
           onClick={() => {
