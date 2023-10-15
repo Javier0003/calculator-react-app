@@ -22,19 +22,16 @@ export function Keyboard({ addNumber }: btnPropsKeyboard) {
           flexWrap: "wrap",
         }}
       >
-        {btns.map((btns) => {
-          return (
-            <button
-              key={btns}
+        {btns.map(btn => <button
+              key={btn}
               className={styles.button}
               onClick={() => {
-                handleClick(btns);
+                handleClick(btn);
               }}
             >
-              {btns}
+              {btn}
             </button>
-          );
-        })}
+        )}
         <button
           className={styles.button}
           style={{ borderRadius: "0px 0px 0px 20px" }}
